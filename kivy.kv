@@ -27,28 +27,10 @@
     color: 1, 1, 1, 1
     background_color: 1, 1, 0, 1
     size_hint: .2, .2
-    border_color: 1, .5, .5, 1
-    border_width: 2
-
-    canvas.before:
-        Color:
-            rgba: self.border_color
-        Line:
-            width: self.border_width
-            rectangle: (self.x, self.y, self.width, self.height)
 
 <FilterButton@Button>
     size_hint: .3, .1
     color: 0, 0, 0, 0
-    border_color: 1, .5, .5, 1
-    border_width: 2
-
-    canvas.before:
-        Color:
-            rgba: self.border_color
-        Line:
-            width: self.border_width
-            rectangle: (self.x, self.y, self.width, self.height)
 
 <Main>
     name: 'main'
