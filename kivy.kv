@@ -1,32 +1,40 @@
+# Класс для кнопок внизу экрана. Главная, настройки и т.д
 <BottomBtns@Button>
     color: 1, .2, .3, 1
     background_color: 0, 0, 0, 0
     size_hint_y: None
     height: 30
 
+# Класс для текста, описаний продуктов
 <ItemLabels@Label>
     font_size: 30
     color: 1, .2, .3, 1
 
+# Класс для изображений товаров
 <MyIcon@Image>:
     size_hint_y: None
     height: 30
 
+# Класс для изображения фильтра 
 <Filter@Image>:
     size_hint_y: None
     height: 30
     
+# Класс для текста в всплывающем окне для фильтра    
 <FilterLabels@Label>
     color: 1, 1, 1, 1
     background_color: 1, 1, 0, 1
     size_hint: .2, .2
 
+# Класс для кнопок в окне фильтр 
 <FilterButton@Button>
     size_hint: .3, .1
     color: 0, 0, 0, 0
 
+# Главный экран 
 <Main>
     name: 'main'
+    # Белый бэкграунд
     canvas.before:
         Color: 
             rgba: 1, 1, 1, 1
@@ -34,10 +42,12 @@
             pos: self.pos
             size: self.size
 
+    # Состоит этот экран из одного Грида, у которого 3 строки. Каждая из строк свой отдельный layout.
     GridLayout:
         rows: 3
         padding: {0, 10, 0, 10}
-
+        
+        # Первое это верхняя часть экрана, фильтр и поиск
         GridLayout:
             cols: 3
             size_hint: .2, .1
@@ -53,11 +63,13 @@
 
             MyIcon:
                 source: 'imgs/search.jpg'
-
+    
+        # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
             ItemLabels: 
                 text: 'Welcome to Asdf'
 
+        # Третья строка это навигация. Меню, главная и настройки        
         GridLayout:
             cols: 3
             size_hint: .1, .1
