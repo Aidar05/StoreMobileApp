@@ -1,0 +1,198 @@
+
+<TopBtns@Button>
+    color: 1, .2, .3, 1
+    background_color: 0, 0, 0, 0
+    size_hint_y: None
+    height: 30
+
+<BottomBtns@Button>
+    color: 1, .2, .3, 1
+    background_color: 0, 0, 0, 0
+    size_hint_y: None
+    height: 30
+
+<ItemLabels@Label>
+    font_size: 30
+    color: 1, .2, .3, 1
+
+<MyIcon@Image>:
+    size_hint_y: None
+    height: 30
+
+<Filter@Image>:
+    size_hint_y: None
+    height: 30
+    
+<FilterLabels@Label>
+    color: 1, 1, 1, 1
+    background_color: 1, 1, 0, 1
+    size_hint: .2, .2
+    border_color: 1, .5, .5, 1
+    border_width: 2
+
+    canvas.before:
+        Color:
+            rgba: self.border_color
+        Line:
+            width: self.border_width
+            rectangle: (self.x, self.y, self.width, self.height)
+
+<FilterButton@Button>
+    size_hint: .3, .1
+    color: 0, 0, 0, 0
+    border_color: 1, .5, .5, 1
+    border_width: 2
+
+    canvas.before:
+        Color:
+            rgba: self.border_color
+        Line:
+            width: self.border_width
+            rectangle: (self.x, self.y, self.width, self.height)
+
+<Main>
+    name: 'main'
+    canvas.before:
+        Color: 
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        rows: 3
+        padding: {0, 10, 0, 10}
+
+        GridLayout:
+            cols: 3
+            size_hint: .2, .1
+            height: .1
+
+            Filter:
+                source: 'imgs/filter.jpg'
+                on_touch_down: app.OpenFilter()
+
+            TextInput: 
+                size_hint_y: None
+                height: 30                
+
+            MyIcon:
+                source: 'imgs/search.jpg'
+
+        AnchorLayout:
+            ItemLabels: 
+                text: 'Welcome to Asdf'
+
+        GridLayout:
+            cols: 3
+            size_hint: .1, .1
+
+            BottomBtns:
+                text: 'Menu         |'
+            BottomBtns:
+                text: 'Main         |'
+            BottomBtns:
+                text: 'Settings'
+
+<Notebooks>
+    name: 'notebooks'
+    canvas.before:
+        Color: 
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        rows: 3
+        padding: {10, 10, 10, 10}
+
+        GridLayout:
+            cols: 3
+            size_hint: .1, .1
+            height: .1
+
+            Filter:
+                source: 'imgs/filter.jpg'
+                on_touch_down: app.OpenFilter()
+
+            TextInput: 
+                size_hint_y: None
+                height: 30                
+            MyIcon:
+                source: 'imgs/search.jpg'                 
+
+        GridLayout: 
+            cols: 2 
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Image:
+                    source: 'imgs/first.jpg'
+                Image:
+                    source: 'imgs/first.jpg'
+                Image:
+                    source: 'imgs/first.jpg'
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label: 
+                    text: 'Notebook1'
+                    color: 0, 0, 0, 1
+                Label: 
+                    text: 'Notebook2'
+                    color: 0, 0, 0, 1
+                Label: 
+                    text: 'Notebook3'
+                    color: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 3
+            size_hint: .1, .1
+
+            BottomBtns:
+                text: 'Menu         |'
+            BottomBtns:
+                text: 'Main         |'
+            BottomBtns:
+                text: 'Settings'
+
+<FilterWindow>
+    title: 'Filter'
+    size_hint: 0.8, 0.8
+    auto_dismiss: False
+    background_color: 0.6, 0.6, 1, 1
+
+    BoxLayout:
+        GridLayout:
+            cols: 2
+
+            BoxLayout:
+                orientation: 'vertical'
+                
+                FilterLabels: 
+                    text: 'Laptop'
+                FilterLabels: 
+                    text: 'Phone'
+                FilterLabels: 
+                    text: 'PC'
+                FilterButton:    
+                    text: 'Close filter'
+                    on_press: app.CloseFilter()
+            
+            BoxLayout:
+                orientation: 'vertical'
+
+                CheckBox: 
+                    text: 'Check'
+                    color: 1, 1, 0, 1
+                CheckBox: 
+                    text: 'Check'
+                    color: 1, 1, 0, 1
+                CheckBox: 
+                    text: 'Check'
+                    color: 1, 1, 0, 1
+                FilterButton:
+                    text: 'Apply changes'
