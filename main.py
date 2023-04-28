@@ -38,7 +38,14 @@ class WindowsManager(ScreenManager):
 
 # Класс для выпадающего окошка. Фильтр пойска 
 class FilterWindow(Popup):
-    pass
+    def Search(self):
+        if self.ids.Laptop_check.active == True:
+            print("Laptops")
+        if self.ids.Phone_check.active == True:
+            print('Phones')
+        if self.ids.PC_check.active == True:
+            print('PC')
+
 
 
 # Класс моего приложения 
