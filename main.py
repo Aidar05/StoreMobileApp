@@ -31,6 +31,10 @@ class Notebooks(Screen):
         super().__init__(**kw)
 
 
+class Sign_in(Screen):
+    pass
+
+
 # Класс чтобы мэнэджить все окна
 class WindowsManager(ScreenManager):
     pass
@@ -48,13 +52,16 @@ class StoreApp(App):
         # Создаем instance менеджера скринов и добавляем в него все окна
         self.screen_manager = ScreenManager()
         self.screen_manager.add_widget(Main(name='main'))
+        self.screen_manager.add_widget(Sign_in(name='sign_in'))
         self.screen_manager.add_widget(Notebooks(name='notebooks'))
         return self.screen_manager    # Возвращаем главный экран
     
     # Метод для открывания фильтра поиска. Тригериться при нажатия на кнопку в киви 
-    def OpenFilter(self):
-        self.popup = FilterWindow()
-        self.popup.open()
+    def OpenFilter(self, instance, touch):
+        # Открываеться только если нажали на саму кнопку, а не просто на экран
+        if instance.collide_point(*touch.pos):
+            self.popup = FilterWindow()
+            self.popup.open()
 
     # Закрывает фильтр окошко. Срабатывает при нажатии на подходящую кнопку в киви 
     def CloseFilter(self):
