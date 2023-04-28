@@ -28,7 +28,7 @@
 
 # Класс для кнопок в окне фильтр 
 <FilterButton@Button>
-    size_hint: .3, .1
+    size_hint: .05, .1
     color: 0, 0, 0, 0
 
 # Главный экран 
@@ -101,7 +101,7 @@
 
             Filter:
                 source: 'imgs/filter.jpg'
-                on_touch_down: .OpenFilter(*args)
+                on_touch_down: app.OpenFilter(*args)
 
             TextInput: 
                 size_hint_y: None
