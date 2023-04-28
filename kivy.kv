@@ -24,12 +24,14 @@
 <FilterLabels@Label>
     color: 1, 1, 1, 1
     background_color: 1, 1, 0, 1
-    size_hint: .2, .2
+    size_hint: 1, .2
 
 # Класс для кнопок в окне фильтр 
 <FilterButton@Button>
-    size_hint: .05, .1
-    color: 0, 0, 0, 0
+    size_hint: .8, .05
+    color: 1, 1, 1, 1
+    background_color: 0.8, 0.8, 1, 1
+
 
 # Главный экран 
 <Main>
@@ -159,29 +161,34 @@
             BoxLayout:
                 orientation: 'vertical'
                 size_hint: .8, .8
+                padding: [23, 0, 0, 0]
                 
                 FilterLabels: 
-                    text: 'Laptop'
+                    text: 'Laptop:'
                 FilterLabels: 
-                    text: 'Phone'
+                    text: 'Phone:'
                 FilterLabels: 
-                    text: 'PC'
+                    text: 'PC:'
                 FilterButton:    
-                    text: 'Close filter'
+                    text: 'Close'
                     on_press: app.CloseFilter()
             
             BoxLayout:
                 orientation: 'vertical'
                 size_hint: .8, .8
+                padding: [23, 0, 0, 0]
                 
                 CheckBox: 
                     text: 'Check'
                     color: 1, 1, 0, 1
+                    size_hint: 1, .2
                 CheckBox: 
                     text: 'Check'
                     color: 1, 1, 0, 1
+                    size_hint: 1, .2
                 CheckBox: 
                     text: 'Check'
                     color: 1, 1, 0, 1
+                    size_hint: 1, .2
                 FilterButton:
-                    text: 'Apply changes'
+                    text: 'Save'
