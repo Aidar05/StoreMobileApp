@@ -55,14 +55,14 @@
 
             Filter:
                 source: 'imgs/filter.jpg'
-                on_touch_down: app.OpenFilter()
+                on_touch_down: app.OpenFilter(*args)
 
             TextInput: 
                 size_hint_y: None
                 height: 30                
 
             MyIcon:
-                source: 'imgs/search.jpg'
+                source: 'imgs/avatar.png'
     
         # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
@@ -101,7 +101,7 @@
 
             Filter:
                 source: 'imgs/filter.jpg'
-                on_touch_down: app.OpenFilter()
+                on_touch_down: .OpenFilter(*args)
 
             TextInput: 
                 size_hint_y: None
