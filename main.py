@@ -19,10 +19,7 @@ Config.set('graphics', 'height', root_height)
 
 # Класс для главного экрана
 class Main(Screen):
-    # Инициализация класса. На самом деле не уверен если необходима
-    def __init__(self, **kw):
-        super().__init__(**kw)
-
+    pass
 
 # Класс для экрана с ноутбуками.  
 class Notebooks(Screen):
@@ -31,7 +28,7 @@ class Notebooks(Screen):
         super().__init__(**kw)
 
 
-class Sign_in(Screen):
+class SignIn(Screen):
     pass
 
 
@@ -52,7 +49,7 @@ class StoreApp(App):
         # Создаем instance менеджера скринов и добавляем в него все окна
         self.screen_manager = ScreenManager()
         self.screen_manager.add_widget(Main(name='main'))
-        self.screen_manager.add_widget(Sign_in(name='sign_in'))
+        self.screen_manager.add_widget(SignIn(name='sign_in'))
         self.screen_manager.add_widget(Notebooks(name='notebooks'))
         return self.screen_manager    # Возвращаем главный экран
     
@@ -67,6 +64,11 @@ class StoreApp(App):
     def CloseFilter(self):
         self.popup.dismiss()
 
+
+    def Profile(self, instance, touch):
+        if instance.collide_point(*touch.pos):
+            # change screen 
+            self.screen_manager.current = 'sign_in'
 
 # Загружаем киви файл 
 kv = Builder.load_file('kivy.kv')
