@@ -1,14 +1,14 @@
 # Класс для кнопок внизу экрана. Главная, настройки и т.д
 <BottomBtns@Button>
-    color: 1, .2, .3, 1
+    color: .9, .9, .9, 1
     background_color: 0, 0, 0, 0
     size_hint_y: None
     height: 30
 
 # Класс для текста, описаний продуктов
-<ItemLabels@Label>
+<MyLabels@Label>
     font_size: 30
-    color: 1, .2, .3, 1
+    color: .9, .9, .9, 1
 
 # Класс для изображений товаров
 <MyIcon@Image>:
@@ -22,16 +22,19 @@
     
 # Класс для текста в всплывающем окне для фильтра    
 <FilterLabels@Label>
-    color: 1, 1, 1, 1
-    background_color: 1, 1, 0, 1
+    color: .9, .9, .9, 1
     size_hint: 1, .2
 
 # Класс для кнопок в окне фильтр 
 <FilterButton@Button>
     size_hint: .8, .05
-    color: 1, 1, 1, 1
-    background_color: 0.8, 0.8, 1, 1
+    color: .9, .9, .9, 1
+    background_color: 0.9, 0.9, .9, 1
 
+# Sign_in text TextInput
+<SignInInput@TextInput>
+    padding: 50
+    size_hint: 0.9, 0.06
 
 # Главный экран 
 <Main>
@@ -39,7 +42,7 @@
     # Белый бэкграунд
     canvas.before:
         Color: 
-            rgba: 1, 1, 1, 1
+            rgba: .05, .05, .05, 1
         Rectangle:
             pos: self.pos
             size: self.size
@@ -51,7 +54,7 @@
         
         # Первое это верхняя часть экрана, фильтр и поиск
         GridLayout:
-            cols: 3
+            cols: 2
             size_hint: .2, .1
             height: .1
 
@@ -59,16 +62,13 @@
                 source: 'imgs/filter.jpg'
                 on_touch_down: app.OpenFilter(*args)
 
-            TextInput: 
-                size_hint_y: None
-                height: 30                
-
             MyIcon:
                 source: 'imgs/avatar.png'
+                on_touch_down: app.Profile(*args)
     
         # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
-            ItemLabels: 
+            MyLabels: 
                 text: 'Welcome to Asdf'
 
         # Третья строка это навигация. Меню, главная и настройки        
@@ -97,7 +97,7 @@
         padding: {10, 10, 10, 10}
 
         GridLayout:
-            cols: 3
+            cols: 2
             size_hint: .1, .1
             height: .1
 
@@ -105,9 +105,6 @@
                 source: 'imgs/filter.jpg'
                 on_touch_down: app.OpenFilter(*args)
 
-            TextInput: 
-                size_hint_y: None
-                height: 30                
             MyIcon:
                 source: 'imgs/search.jpg'                 
 
@@ -152,7 +149,7 @@
     title: 'Filter'
     size_hint: 0.8, 0.8
     auto_dismiss: False
-    background_color: 0.6, 0.6, 1, 1
+    background_color: .05, .05, .05, 1
 
     BoxLayout:
         GridLayout:
@@ -192,3 +189,45 @@
                     size_hint: 1, .2
                 FilterButton:
                     text: 'Save'
+
+
+<SignIn>
+    canvas.before:
+        Color:
+            rgba: .05, .05, .05, 1
+        Rectangle: 
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        MyLabels:
+            text: 'MoGo'
+            pos_hint: {'x':0, 'y':0.35}
+            background_color: .05, .05, .05, 1
+            font_size: 40
+
+
+        SignInInput:
+            text: 'Name'
+            pos_hint: {'x':0.05, 'y': .43}
+
+        SignInInput:
+            text: 'Last name'
+            pos_hint: {'x':0.05, 'y': .31}
+
+        SignInInput:
+            text: 'Login/Phone number'
+            pos_hint: {'x':0.05, 'y': .67}
+            background_color: 1, 1, 1, 1
+
+        SignInInput:
+            text: 'Password'
+            pos_hint: {'x':0.05, 'y': .55}
+
+        Button: 
+            text: 'Sign up'
+            pos_hint: {'right': .95  , 'y': .15}
+            size_hint: .3, .1
+            background_color: 255, 99, 71, 1
+
+
