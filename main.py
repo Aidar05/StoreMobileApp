@@ -53,6 +53,9 @@ class StoreApp(App):
         self.screen_manager.add_widget(Notebooks(name='notebooks'))
         return self.screen_manager    # Возвращаем главный экран
     
+    def MainScreen(self):
+        self.screen_manager.current = 'main'
+
     # Метод для открывания фильтра поиска. Тригериться при нажатия на кнопку в киви 
     def OpenFilter(self, instance, touch):
         # Окно фильтр открываеться только если нажали на саму кнопку 
