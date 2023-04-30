@@ -33,8 +33,9 @@
 
 # Sign_in text TextInput
 <SignInInput@TextInput>
-    padding: 50
-    size_hint: 0.9, 0.06
+    size_hint: 0.7, 0.05
+    foreground_color: (0, 0, 0, .7)
+    font_size: 12
 
 # Главный экран 
 <Main>
@@ -200,34 +201,58 @@
             size: self.size
 
     FloatLayout:
-        MyLabels:
+        Button:
             text: 'MoGo'
-            pos_hint: {'x':0, 'y':0.35}
-            background_color: .05, .05, .05, 1
+            pos_hint: {'x':0.32, 'y':0.80}
             font_size: 40
-
+            size_hint: .4, .1
+            color: 1, 1, 1, 1 
+            background_color: (0, 0, 0, 0)
+            on_press: app.MainScreen()
 
         SignInInput:
             text: 'Name'
-            pos_hint: {'x':0.05, 'y': .43}
+            pos_hint: {'x':0.15, 'y': .67}
 
         SignInInput:
             text: 'Last name'
-            pos_hint: {'x':0.05, 'y': .31}
+            pos_hint: {'x':0.15, 'y': .55}
 
         SignInInput:
             text: 'Login/Phone number'
-            pos_hint: {'x':0.05, 'y': .67}
-            background_color: 1, 1, 1, 1
+            pos_hint: {'x':0.15, 'y': .43}
 
         SignInInput:
             text: 'Password'
-            pos_hint: {'x':0.05, 'y': .55}
+            pos_hint: {'x':0.15, 'y': .31}
+
+        Button:
+            text: 'Forgot yout password?' 
+            pos_hint: {'right': .5  , 'y': .26}
+            size_hint: .3, .05
+            font_size: 12
+            color: .1, 1, 1, 1
+            background_color: (0, 0, 0, 0)
 
         Button: 
             text: 'Sign up'
-            pos_hint: {'right': .95  , 'y': .15}
-            size_hint: .3, .1
+            pos_hint: {'right': .85  , 'y': .12}
+            size_hint: .25, .05
             background_color: 255, 99, 71, 1
+            color: 0, 0, 0, 1
+            font_size: 12
 
+        Button:
+            text: 'Sign in'
+            pos_hint: {'right': .4  , 'y': .12}
+            size_hint: .25, .05
+            font_size: 12
+            background_color: 255, 99, 71, 1
+            color: 0, 0, 0, 1
 
+        Label:
+            text: 'Alredy have an account?' 
+            pos_hint: {'right': .5  , 'y': .17}
+            size_hint: .3, .05
+            font_size: 12
+            color: 1, 1, 1, 1
