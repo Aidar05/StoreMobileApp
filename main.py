@@ -1,10 +1,19 @@
-# Импорт нужных частей модуля  
-from kivy.app import App 
+# Импорт нужных частей модуля
+import kivymd  
+from kivymd.app import MDApp 
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.config import Config
 from kivy.lang import Builder
 from kivy.uix.popup import Popup
-from kivy.uix.checkbox import CheckBox
+from kivy.properties import ObjectProperty
+
+import mysql.connector
+
+
+db = mysql.connector.connect(user='root',
+                              password='',
+                              host='localhost',
+                              database='user_data')
 
 
 # Описываю ширину и высоту окна приложения 
@@ -29,8 +38,23 @@ class Notebooks(Screen):
 
 
 class SignIn(Screen):
-    pass
+    def user_data(self):
+        user_data = [self.ids.user_name.text,
+                     self.ids.user_last_name.text,
+                     self.ids.user_login_number.text,
+                     self.ids.user_password.text
+                    ]
+        print(user_data)
 
+        cursor = db.cursor()
+
+        cmd = 'insert into data (name, last_name, login, password) values (%s, %s, %s, %s)'
+
+        cursor.execute(cmd, user_data)
+
+        db.commit()
+
+        cursor.close()
 
 # Класс чтобы мэнэджить все окна
 class WindowsManager(ScreenManager):
@@ -43,13 +67,13 @@ class FilterWindow(Popup):
 
 
 # Класс моего приложения 
-class StoreApp(App):
+class StoreApp(MDApp):
     # Необходимый метод билд который тригериться в начале приложния
     def build(self):
         # Создаем instance менеджера скринов и добавляем в него все окна
         self.screen_manager = ScreenManager()
-        self.screen_manager.add_widget(Main(name='main'))
         self.screen_manager.add_widget(SignIn(name='sign_in'))
+        self.screen_manager.add_widget(Main(name='main'))
         self.screen_manager.add_widget(Notebooks(name='notebooks'))
         return self.screen_manager    # Возвращаем главный экран
     
