@@ -7,7 +7,7 @@
 
 # Класс для текста, описаний продуктов
 <MyLabels@Label>
-    font_size: 30
+    font_size: 20
     color: .9, .9, .9, 1
 
 # Класс для изображений товаров
@@ -16,7 +16,7 @@
     height: 30
 
 # Класс для изображения фильтра 
-<Filter@Image>:
+<Filter@Button>:
     size_hint_y: None
     height: 30
     
@@ -55,13 +55,32 @@
         
         # Первое это верхняя часть экрана, фильтр и поиск
         GridLayout:
-            cols: 2
+            cols: 3
             size_hint: .2, .1
             height: .1
 
-            Filter:
-                source: 'imgs/filter.jpg'
+            Widget:
+                canvas.after:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Line:
+                        points: [50, 550, 50, 530]
+                        width: 0.5
+                    Line:
+                        points: [60, 550, 60, 530]
+                        width: 0.5
+                    Line:
+                        points: [70, 550, 70, 530]
+                        width: 0.5
                 on_touch_down: app.OpenFilter(*args)
+
+            Button:
+                text: 'AsDf'
+                font_size: 40
+                size_hint: .4, .1
+                color: 1, 1, 1, 1 
+                background_color: (0, 0, 0, 0)
+                on_press: app.MainScreen()
 
             MyIcon:
                 source: 'imgs/avatar.png'
@@ -70,7 +89,8 @@
         # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
             MyLabels: 
-                text: 'Welcome to Asdf'
+                text: 'Добро пожаловать на AsDf'
+                text: 'интернет магазин для техники'
 
         # Третья строка это навигация. Меню, главная и настройки        
         GridLayout:
@@ -202,7 +222,7 @@
 
     FloatLayout:
         Button:
-            text: 'MoGo'
+            text: 'AsDf'
             pos_hint: {'x':0.32, 'y':0.80}
             font_size: 40
             size_hint: .4, .1
