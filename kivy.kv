@@ -13,7 +13,7 @@
 # Класс для изображений товаров
 <MyIcon@Image>:
     size_hint_y: None
-    height: 30
+    height: 40
 
 # Класс для изображения фильтра 
 <Filter@Button>:
@@ -32,9 +32,10 @@
     background_color: 0.9, 0.9, .9, 1
 
 # Sign_in text TextInput
-<SignInInput@TextInput>
+<MDTextField>
     size_hint: 0.7, 0.05
     foreground_color: (0, 0, 0, .7)
+    background_color: 1, 0, 0, 1
     font_size: 12
 
 # Главный экран 
@@ -64,13 +65,13 @@
                     Color:
                         rgba: 1, 1, 1, 1
                     Line:
-                        points: [50, 550, 50, 530]
+                        points: [50, 550, 50, 580]
                         width: 0.5
                     Line:
-                        points: [60, 550, 60, 530]
+                        points: [60, 550, 60, 580]
                         width: 0.5
                     Line:
-                        points: [70, 550, 70, 530]
+                        points: [70, 550, 70, 580]
                         width: 0.5
                 on_touch_down: app.OpenFilter(*args)
 
@@ -85,7 +86,7 @@
             MyIcon:
                 source: 'imgs/avatar.png'
                 on_touch_down: app.Profile(*args)
-    
+
         # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
             MyLabels: 
@@ -213,7 +214,12 @@
 
 
 <SignIn>
-    canvas.before:
+    user_name: user_name
+    user_last_name: user_last_name
+    user_login_number: user_login_number
+    id: user_password: id: user_password
+    
+    canvas:
         Color:
             rgba: .05, .05, .05, 1
         Rectangle: 
@@ -230,21 +236,29 @@
             background_color: (0, 0, 0, 0)
             on_press: app.MainScreen()
 
-        SignInInput:
-            text: 'Name'
+        MDTextField:
+            id: user_name
+            hint_text: 'Name'
             pos_hint: {'x':0.15, 'y': .67}
+            max_text_length: 12
 
-        SignInInput:
-            text: 'Last name'
+        MDTextField:
+            id: user_last_name
+            hint_text: 'Last name'
             pos_hint: {'x':0.15, 'y': .55}
+            max_text_length: 12
 
-        SignInInput:
-            text: 'Login/Phone number'
+        MDTextField:
+            id: user_login_number
+            hint_text: 'Login/Phone number'
             pos_hint: {'x':0.15, 'y': .43}
+            max_text_length: 20
 
-        SignInInput:
-            text: 'Password'
+        MDTextField:
+            id: user_password
+            hint_text: 'Password'
             pos_hint: {'x':0.15, 'y': .31}
+            max_text_length: 12
 
         Button:
             text: 'Forgot yout password?' 
@@ -269,6 +283,7 @@
             font_size: 12
             background_color: 255, 99, 71, 1
             color: 0, 0, 0, 1
+            on_press: root.user_data()
 
         Label:
             text: 'Alredy have an account?' 
