@@ -1,12 +1,12 @@
 # Класс для кнопок внизу экрана. Главная, настройки и т.д
-<BottomBtns@Button>
+<BottomBtns@MDFlatButton>
     color: .9, .9, .9, 1
     background_color: 0, 0, 0, 0
     size_hint_y: None
     height: 30
 
 # Класс для текста, описаний продуктов
-<MyLabels@Label>
+<MyLabels@MDLabel>
     font_size: 20
     color: .9, .9, .9, 1
 
@@ -16,31 +16,31 @@
     height: 40
 
 # Класс для изображения фильтра 
-<Filter@Button>:
+<Filter@MDFlatButton>:
     size_hint_y: None
     height: 30
     
 # Класс для текста в всплывающем окне для фильтра    
-<FilterLabels@Label>
-    color: .9, .9, .9, 1
+<FilterLabels@MDLabel>
     size_hint: 1, .2
+    color: .9, .9, .9, 1
 
 # Класс для кнопок в окне фильтр 
-<FilterButton@Button>
+<FilterButton@MDFlatButton>
     size_hint: .8, .05
     color: .9, .9, .9, 1
-    background_color: 0.9, 0.9, .9, 1
 
 # Sign_in text TextInput
 <MDTextField>
     size_hint: 0.7, 0.05
+    font_size: 12
     foreground_color: (0, 0, 0, .7)
     background_color: 1, 0, 0, 1
-    font_size: 12
 
 # Главный экран 
 <Main>
     name: 'main'
+    
     # Белый бэкграунд
     canvas.before:
         Color: 
@@ -65,23 +65,23 @@
                     Color:
                         rgba: 1, 1, 1, 1
                     Line:
-                        points: [50, 550, 50, 580]
+                        points: [50, 550, 50, 530]
                         width: 0.5
                     Line:
-                        points: [60, 550, 60, 580]
+                        points: [60, 550, 60, 530]
                         width: 0.5
                     Line:
-                        points: [70, 550, 70, 580]
+                        points: [70, 550, 70, 530]
                         width: 0.5
                 on_touch_down: app.OpenFilter(*args)
 
-            Button:
+            MDFlatButton:
                 text: 'AsDf'
                 font_size: 40
                 size_hint: .4, .1
-                color: 1, 1, 1, 1 
-                background_color: (0, 0, 0, 0)
                 on_press: app.MainScreen()
+                color: 0, 0, 0, 1 
+                background_color: (0, 0, 0, 0)
 
             MyIcon:
                 source: 'imgs/avatar.png'
@@ -107,6 +107,7 @@
 
 <Notebooks>
     name: 'notebooks'
+    
     canvas.before:
         Color: 
             rgba: 1, 1, 1, 1
@@ -146,13 +147,13 @@
             BoxLayout:
                 orientation: 'vertical'
 
-                Label: 
+                MDLabel: 
                     text: 'Notebook1'
                     color: 0, 0, 0, 1
-                Label: 
+                MDLabel: 
                     text: 'Notebook2'
                     color: 0, 0, 0, 1
-                Label: 
+                MDLabel: 
                     text: 'Notebook3'
                     color: 0, 0, 0, 1
 
@@ -199,95 +200,17 @@
                 
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 FilterButton:
                     text: 'Save'
 
 
-<SignIn>
-    user_name: user_name
-    user_last_name: user_last_name
-    user_login_number: user_login_number
-    id: user_password: id: user_password
-    
-    canvas:
-        Color:
-            rgba: .05, .05, .05, 1
-        Rectangle: 
-            pos: self.pos
-            size: self.size
-
-    FloatLayout:
-        Button:
-            text: 'AsDf'
-            pos_hint: {'x':0.32, 'y':0.80}
-            font_size: 40
-            size_hint: .4, .1
-            color: 1, 1, 1, 1 
-            background_color: (0, 0, 0, 0)
-            on_press: app.MainScreen()
-
-        MDTextField:
-            id: user_name
-            hint_text: 'Name'
-            pos_hint: {'x':0.15, 'y': .67}
-            max_text_length: 12
-
-        MDTextField:
-            id: user_last_name
-            hint_text: 'Last name'
-            pos_hint: {'x':0.15, 'y': .55}
-            max_text_length: 12
-
-        MDTextField:
-            id: user_login_number
-            hint_text: 'Login/Phone number'
-            pos_hint: {'x':0.15, 'y': .43}
-            max_text_length: 20
-
-        MDTextField:
-            id: user_password
-            hint_text: 'Password'
-            pos_hint: {'x':0.15, 'y': .31}
-            max_text_length: 12
-
-        Button:
-            text: 'Forgot yout password?' 
-            pos_hint: {'right': .5  , 'y': .26}
-            size_hint: .3, .05
-            font_size: 12
-            color: .1, 1, 1, 1
-            background_color: (0, 0, 0, 0)
-
-        Button: 
-            text: 'Sign up'
-            pos_hint: {'right': .85  , 'y': .12}
-            size_hint: .25, .05
-            background_color: 255, 99, 71, 1
-            color: 0, 0, 0, 1
-            font_size: 12
-
-        Button:
-            text: 'Sign in'
-            pos_hint: {'right': .4  , 'y': .12}
-            size_hint: .25, .05
-            font_size: 12
-            background_color: 255, 99, 71, 1
-            color: 0, 0, 0, 1
-            on_press: root.user_data()
-
-        Label:
-            text: 'Alredy have an account?' 
-            pos_hint: {'right': .5  , 'y': .17}
-            size_hint: .3, .05
-            font_size: 12
-            color: 1, 1, 1, 1
