@@ -6,6 +6,7 @@ from kivy.config import Config
 from kivy.lang import Builder
 from kivy.uix.popup import Popup
 from kivy.properties import ObjectProperty
+from kivy.core.window import Window
 
 import mysql.connector
 
@@ -16,14 +17,13 @@ db = mysql.connector.connect(user='root',
                               database='user_data')
 
 
-# Описываю ширину и высоту окна приложения 
+# Описываю ширину и высоту окна при ложения 
 root_width = 330
 root_height = 580 
 
 
-# Меняю размеры окна ранее выбранные 
-Config.set('graphics', 'width', root_width)
-Config.set('graphics', 'height', root_height)
+# Меняю размеры окна ранее выбранные
+Window.size = (root_width, root_height)
 
 
 # Класс для главного экрана
@@ -37,8 +37,8 @@ class Notebooks(Screen):
         super().__init__(**kw)
 
 
-class SignIn(Screen):
-    def user_data(self):
+class SignUp(Screen):
+    def user_data_insert(self):
         user_data = [self.ids.user_name.text,
                      self.ids.user_last_name.text,
                      self.ids.user_login_number.text,
@@ -56,6 +56,23 @@ class SignIn(Screen):
 
         cursor.close()
 
+class SignIn(Screen):
+    def user_data_check(self):
+        cursor = db.cursor()
+
+        cmd = 'select * from data'
+
+        cursor.execute(cmd)
+        data = cursor.fetchall()
+
+        for i in data:
+            print(f'login,  {i[3]}')
+            print(f'password,  {i[4]}')
+
+        cursor.close()
+        print('Checking...')
+
+
 # Класс чтобы мэнэджить все окна
 class WindowsManager(ScreenManager):
     pass
@@ -70,8 +87,11 @@ class FilterWindow(Popup):
 class StoreApp(MDApp):
     # Необходимый метод билд который тригериться в начале приложния
     def build(self):
+        self.theme_cls.primary_palette = 'LightBlue'
+
         # Создаем instance менеджера скринов и добавляем в него все окна
         self.screen_manager = ScreenManager()
+        self.screen_manager.add_widget(SignUp(name='sign_up'))
         self.screen_manager.add_widget(SignIn(name='sign_in'))
         self.screen_manager.add_widget(Main(name='main'))
         self.screen_manager.add_widget(Notebooks(name='notebooks'))
@@ -99,7 +119,8 @@ class StoreApp(MDApp):
 
 # Загружаем киви файл 
 kv = Builder.load_file('kivy.kv')
-
+kv = Builder.load_file('Sign_in.kv')
+kv = Builder.load_file('Sign_up.kv')
 
 # Срабатывает только если он запускается как главный процесс на прямую
 if __name__ == '__main__':
