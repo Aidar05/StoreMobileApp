@@ -31,10 +31,8 @@ class Main(Screen):
     pass
 
 # Класс для экрана с ноутбуками.  
-class Notebooks(Screen):
-    # Еще одна инициализация класса
-    def __init__(self, **kw):
-        super().__init__(**kw)
+class Friends(Screen):
+    pass
 
 
 class SignUp(Screen):
@@ -80,21 +78,21 @@ class WindowsManager(ScreenManager):
 
 # Класс для выпадающего окошка. Фильтр пойска 
 class FilterWindow(Popup):
-    pass
+    pass        
 
 
 # Класс моего приложения 
 class StoreApp(MDApp):
     # Необходимый метод билд который тригериться в начале приложния
     def build(self):
-        self.theme_cls.primary_palette = 'LightBlue'
+        self.theme_cls.primary_palette = 'BlueGray'
 
         # Создаем instance менеджера скринов и добавляем в него все окна
         self.screen_manager = ScreenManager()
         self.screen_manager.add_widget(SignUp(name='sign_up'))
         self.screen_manager.add_widget(SignIn(name='sign_in'))
         self.screen_manager.add_widget(Main(name='main'))
-        self.screen_manager.add_widget(Notebooks(name='notebooks'))
+        self.screen_manager.add_widget(Friends(name='notebooks'))
         return self.screen_manager    # Возвращаем главный экран
     
     def MainScreen(self):
