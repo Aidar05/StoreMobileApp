@@ -1,53 +1,51 @@
 # Класс для кнопок внизу экрана. Главная, настройки и т.д
-<BottomBtns@Button>
+<BottomBtns@MDIconButton>
     color: .9, .9, .9, 1
-    background_color: 0, 0, 0, 0
-    size_hint_y: None
+    size_hint: .2, None
     height: 30
+    md_bg_color: app.theme_cls.primary_color
 
 # Класс для текста, описаний продуктов
-<MyLabels@Label>
+<MyLabels@MDLabel>
     font_size: 20
     color: .9, .9, .9, 1
 
 # Класс для изображений товаров
 <MyIcon@Image>:
     size_hint_y: None
-    height: 40
+    height: 30
+
 
 # Класс для изображения фильтра 
-<Filter@Button>:
+<Filter@MDFlatButton>:
     size_hint_y: None
     height: 30
     
 # Класс для текста в всплывающем окне для фильтра    
-<FilterLabels@Label>
-    color: .9, .9, .9, 1
+<FilterLabels@MDLabel>
     size_hint: 1, .2
+    color: .9, .9, .9, 1
 
 # Класс для кнопок в окне фильтр 
-<FilterButton@Button>
+<FilterButton@MDFlatButton>
     size_hint: .8, .05
     color: .9, .9, .9, 1
-    background_color: 0.9, 0.9, .9, 1
 
 # Sign_in text TextInput
 <MDTextField>
     size_hint: 0.7, 0.05
+    font_size: 12
     foreground_color: (0, 0, 0, .7)
     background_color: 1, 0, 0, 1
-    font_size: 12
+
+
+<MDLabel>
+    color: 0, 0, 0, 1
 
 # Главный экран 
 <Main>
     name: 'main'
-    # Белый бэкграунд
-    canvas.before:
-        Color: 
-            rgba: .05, .05, .05, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
+    
 
     # Состоит этот экран из одного Грида, у которого 3 строки. Каждая из строк свой отдельный layout.
     GridLayout:
@@ -60,28 +58,30 @@
             size_hint: .2, .1
             height: .1
 
-            Widget:
+            MyIcon:
                 canvas.after:
                     Color:
                         rgba: 1, 1, 1, 1
                     Line:
-                        points: [50, 550, 50, 580]
+                        points: [50, 550, 50, 530]
                         width: 0.5
                     Line:
-                        points: [60, 550, 60, 580]
+                        points: [60, 550, 60, 530]
                         width: 0.5
                     Line:
-                        points: [70, 550, 70, 580]
+                        points: [70, 550, 70, 530]
                         width: 0.5
+                        
+                source: 'imgs/filter.jpg'
                 on_touch_down: app.OpenFilter(*args)
 
-            Button:
+            MDFlatButton:
                 text: 'AsDf'
                 font_size: 40
                 size_hint: .4, .1
-                color: 1, 1, 1, 1 
-                background_color: (0, 0, 0, 0)
                 on_press: app.MainScreen()
+                color: 0, 0, 0, 1 
+                background_color: (0, 0, 0, 0)
 
             MyIcon:
                 source: 'imgs/avatar.png'
@@ -89,88 +89,27 @@
 
         # Вторая строка это 'Добро пожаловать в магазин'
         AnchorLayout:
-            MyLabels: 
-                text: 'Добро пожаловать на AsDf'
-                text: 'интернет магазин для техники'
+            MDLabel: 
+                text: 'Мессенджер'
+                halign: 'center'
 
         # Третья строка это навигация. Меню, главная и настройки        
         GridLayout:
-            cols: 3
-            size_hint: .1, .1
+            cols: 5
+            size_hint: 1, .1    
 
             BottomBtns:
-                text: 'Menu         |'
+                icon: "newspaper-variant"
             BottomBtns:
-                text: 'Main         |'
+                icon: "magnify"
             BottomBtns:
-                text: 'Settings'
+                icon: "message-badge-outline"
+            BottomBtns: 
+                icon: "bell-outline"
+            BottomBtns: 
+                icon: "menu"
 
-<Notebooks>
-    name: 'notebooks'
-    canvas.before:
-        Color: 
-            rgba: 1, 1, 1, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    GridLayout:
-        rows: 3
-        padding: {10, 10, 10, 10}
-
-        GridLayout:
-            cols: 2
-            size_hint: .1, .1
-            height: .1
-
-            Filter:
-                source: 'imgs/filter.jpg'
-                on_touch_down: app.OpenFilter(*args)
-
-            MyIcon:
-                source: 'imgs/search.jpg'                 
-
-        GridLayout: 
-            cols: 2 
-
-            BoxLayout:
-                orientation: 'vertical'
-
-                Image:
-                    source: 'imgs/first.jpg'
-                Image:
-                    source: 'imgs/first.jpg'
-                Image:
-                    source: 'imgs/first.jpg'
-
-            BoxLayout:
-                orientation: 'vertical'
-
-                Label: 
-                    text: 'Notebook1'
-                    color: 0, 0, 0, 1
-                Label: 
-                    text: 'Notebook2'
-                    color: 0, 0, 0, 1
-                Label: 
-                    text: 'Notebook3'
-                    color: 0, 0, 0, 1
-
-        GridLayout:
-            cols: 3
-            size_hint: .1, .1
-
-            BottomBtns:
-                text: 'Menu         |'
-            BottomBtns:
-                text: 'Main         |'
-            BottomBtns:
-                text: 'Settings'
-
-<FilterWindow>
-    title: 'Filter'
-    size_hint: 0.8, 0.8
-    auto_dismiss: False
+<Friends>
     background_color: .05, .05, .05, 1
 
     BoxLayout:
@@ -199,95 +138,65 @@
                 
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 CheckBox: 
                     text: 'Check'
-                    color: 1, 1, 0, 1
                     size_hint: 1, .2
+                    color: 1, 1, 0, 1
                 FilterButton:
                     text: 'Save'
 
 
-<SignIn>
-    user_name: user_name
-    user_last_name: user_last_name
-    user_login_number: user_login_number
-    id: user_password: id: user_password
     
-    canvas:
-        Color:
-            rgba: .05, .05, .05, 1
-        Rectangle: 
-            pos: self.pos
-            size: self.size
 
-    FloatLayout:
-        Button:
-            text: 'AsDf'
-            pos_hint: {'x':0.32, 'y':0.80}
-            font_size: 40
-            size_hint: .4, .1
-            color: 1, 1, 1, 1 
-            background_color: (0, 0, 0, 0)
-            on_press: app.MainScreen()
+<FilterWindow>
+    title: 'Filter'
+    size_hint: 0.8, 0.8
+    auto_dismiss: False
+    background_color: 255, 255, 255, 1
 
-        MDTextField:
-            id: user_name
-            hint_text: 'Name'
-            pos_hint: {'x':0.15, 'y': .67}
-            max_text_length: 12
+    BoxLayout:
+        GridLayout:
+            cols: 2
 
-        MDTextField:
-            id: user_last_name
-            hint_text: 'Last name'
-            pos_hint: {'x':0.15, 'y': .55}
-            max_text_length: 12
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: .8, .8
+                padding: [23, 0, 0, 0]
+                
+                FilterLabels: 
+                    text: 'Laptop:'
+                FilterLabels: 
+                    text: 'Phone:'
+                FilterLabels: 
+                    text: 'PC:'
+                FilterButton:    
+                    text: 'Close'
+                    on_press: app.CloseFilter()
+            
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: .8, .8
+                padding: [23, 0, 0, 0]
+                
+                CheckBox: 
+                    text: 'Check'
+                    size_hint: 1, .2
+                    color: 1, 1, 0, 1
+                CheckBox: 
+                    text: 'Check'
+                    size_hint: 1, .2
+                    color: 1, 1, 0, 1
+                CheckBox: 
+                    text: 'Check'
+                    size_hint: 1, .2
+                    color: 1, 1, 0, 1
+                FilterButton:
+                    text: 'Save'
 
-        MDTextField:
-            id: user_login_number
-            hint_text: 'Login/Phone number'
-            pos_hint: {'x':0.15, 'y': .43}
-            max_text_length: 20
 
-        MDTextField:
-            id: user_password
-            hint_text: 'Password'
-            pos_hint: {'x':0.15, 'y': .31}
-            max_text_length: 12
-
-        Button:
-            text: 'Forgot yout password?' 
-            pos_hint: {'right': .5  , 'y': .26}
-            size_hint: .3, .05
-            font_size: 12
-            color: .1, 1, 1, 1
-            background_color: (0, 0, 0, 0)
-
-        Button: 
-            text: 'Sign up'
-            pos_hint: {'right': .85  , 'y': .12}
-            size_hint: .25, .05
-            background_color: 255, 99, 71, 1
-            color: 0, 0, 0, 1
-            font_size: 12
-
-        Button:
-            text: 'Sign in'
-            pos_hint: {'right': .4  , 'y': .12}
-            size_hint: .25, .05
-            font_size: 12
-            background_color: 255, 99, 71, 1
-            color: 0, 0, 0, 1
-            on_press: root.user_data()
-
-        Label:
-            text: 'Alredy have an account?' 
-            pos_hint: {'right': .5  , 'y': .17}
-            size_hint: .3, .05
-            font_size: 12
-            color: 1, 1, 1, 1
