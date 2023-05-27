@@ -1,0 +1,101 @@
+<NavIcons@MDIconButton>:
+    size_hint: .2, None
+    height: 30
+    margin: (20, 0, 20, 0)
+
+<NavIconsTop@MDIconButton>:
+    size_hint: .2, None
+
+<ContactTab@MDLabel>:
+    bold: "True"
+
+#<CustomOneLineIconListItem>
+#    IconLeftWidget:
+#        icon: root.icon
+
+
+<Main>: 
+    name: 'main'
+    padding: (10, 0, 10, 0)
+
+    GridLayout:
+        rows: 5
+
+        GridLayout:
+            cols: 2
+            size_hint: .2, .1
+            height: .1
+
+            BoxLayout:
+                NavIconsTop: 
+                    icon: "account"
+                    on_press: app.screen_profile()
+                MDLabel: 
+                    text: "Главная"
+                    bold: "True"
+
+            GridLayout:
+                cols: 3
+
+                NavIconsTop:
+                    icon: "plus-circle-outline"
+                NavIconsTop: 
+                    icon: "magnify"
+                NavIconsTop:
+                    icon: "bell-outline" 
+
+        GridLayout:
+            cols: 3
+            size_hint: 1, .1
+            height: .1
+            padding: (40, 0, 0, 0)
+
+            ContactTab:
+                text: "Tuner"
+                on_touch_down: app.screen_main_s(*args) 
+            ContactTab:
+                text: "Быстрая печать"
+                opacity: .7 
+                on_touch_down: app.screen_SpeedType(*args)
+            ContactTab:
+                text: "asdf" 
+                opacity: .7
+                on_touch_down: app.screen_chosen(*args)
+
+        
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(10)
+            padding: dp(20)
+
+            RecycleView:
+                id: rv
+                key_viewclass: 'viewclass'
+                key_size: 'height'
+                orientation: 'horizontal'
+
+                RecycleBoxLayout:
+                    padding: dp(10)
+                    default_size: .1, dp(48)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+
+        GridLayout:
+            cols: 4
+            padding: (50, 0, 50, 0)
+            size_hint: .2, .1
+            height: .1
+
+            NavIcons:
+                icon: "menu"
+            NavIcons:
+                icon: "home-variant-outline"
+                on_press: app.screen_main()
+            NavIcons:
+                icon: "cog-outline"
+                on_press: app.screen_settings()
+
+
+            
